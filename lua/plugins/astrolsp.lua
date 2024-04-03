@@ -46,6 +46,29 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      -- tsserver = {
+      --   root_dir = require("lspconfig.util").root_pattern("package.json"),
+      -- },
+      -- eslint = {
+      --   root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js"),
+      -- },
+      eslint = {
+        -- root_dir = require("lspconfig.util").root_pattern("package.json"),
+        -- condition = function(utils) return utils.root_has_file ".eslintrc.json" or utils.root_has_file ".eslintrc.js" end,
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+          })
+        end,
+        -- filetypes = {
+        --   "javascript",
+        --   "javascriptreact",
+        --   "html",
+        --   "typescriptreact",
+        --   "typescript",
+        -- },
+      }
     },
     -- customize how language servers are attached
     handlers = {
