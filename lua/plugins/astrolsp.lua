@@ -19,6 +19,16 @@ return {
     },
     -- customize lsp formatting options
     formatting = {
+      filter = function(client)
+        -- disable formatting for lua_ls
+        -- if client.name == "typescript_language_server" then return false end
+
+        -- only enable null-ls for javascript files
+        -- if vim.bo.filetype == "javascript" then return client.name == "null-ls" end
+
+        -- enable all other clients
+        return true
+      end,
       -- control auto formatting on save
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
@@ -32,6 +42,7 @@ return {
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
+        "tsserver",
       },
       timeout_ms = 1000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
@@ -68,7 +79,7 @@ return {
         --   "typescriptreact",
         --   "typescript",
         -- },
-      }
+      },
     },
     -- customize how language servers are attached
     handlers = {
