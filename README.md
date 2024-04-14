@@ -24,7 +24,7 @@ You can also just clone this repository directly if you do not want to track you
 #### Clone the repository
 
 ```shell
-git clone winetree94:winetree94/neovim.git ~/.config/nvim
+git clone git@github.com:duchangkim/duvim.git ~/.config/nvim
 ```
 
 #### Start Neovim
